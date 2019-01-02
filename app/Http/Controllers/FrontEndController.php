@@ -7,13 +7,13 @@ use App\Page;
 
 class FrontEndController extends Controller
 {
-    public function page(Request $request)
+    public function page(Request $request, $slug)
     {
         #get page from DB based on the slug
-        $slug = $request->path();
+        // $slug = $request->path();
         // $pages = Page::all();        #test  
-        
-        $page = Page::where('slug', $slug)
+        // dd($slug);
+        $page = Page::whereSlug($slug)
                     ->first();
         // dd($page->title);
         return view('pages.static', compact('page'));
